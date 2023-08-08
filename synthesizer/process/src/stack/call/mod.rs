@@ -138,11 +138,11 @@ impl<N: Network> CallTrait<N> for Call<N> {
             // Retrieve the call stack and resource from the locator.
             CallOperator::Locator(locator) => {
                 // Ensure the external call is not to 'credits.aleo/fee'.
-                if &locator.program_id().to_string() == "credits.aleo" && &locator.resource().to_string() == "fee" {
-                    bail!("Cannot perform an external call to 'credits.aleo/fee'.")
-                } else {
+                // if &locator.program_id().to_string() == "credits.aleo" && &locator.resource().to_string() == "fee" {
+                    // bail!("Cannot perform an external call to 'credits.aleo/fee'.")
+                // } else {
                     (stack.get_external_stack(locator.program_id())?.clone(), locator.resource())
-                }
+                // }
             }
             CallOperator::Resource(resource) => {
                 // TODO (howardwu): Revisit this decision to forbid calling internal functions. A record cannot be spent again.
