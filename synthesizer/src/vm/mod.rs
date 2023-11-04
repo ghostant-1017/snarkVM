@@ -297,6 +297,9 @@ impl<N: Network, C: ConsensusStorage<N>> VM<N, C> {
 
         // First, insert the block.
         self.block_store().insert(block)?;
+        println!("@@@@@@@@@@@@Testing sleep start");
+        std::thread::sleep(std::time::Duration::from_secs(10));
+        println!("@@@@@@@@@@@@Testing sleep over");
         // Next, finalize the transactions.
         match self.finalize(state, block.ratifications(), block.solutions(), block.transactions()) {
             Ok(_ratified_finalize_operations) => Ok(()),
