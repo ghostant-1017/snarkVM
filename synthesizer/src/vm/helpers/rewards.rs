@@ -442,6 +442,15 @@ mod tests {
     }
 
     #[test]
+    fn test_proving_rewards1() {
+        let pair1 = (Address::<CurrentNetwork>::from_str("aleo1fumnd94nwss9mtp8r20893duwqxw2h3xktu06wt2cp6r5x6rq5psr5nrj4").unwrap(), 16057603542);
+        let pair2 = (Address::from_str("aleo1ul89ek6egwjtljy6yhmyteyu9y077ruahwggzfh6sgjqp890y5xs6mz9pe").unwrap(), 6441986000);
+        let rewards = proving_rewards(vec![pair1, pair2], 75804696);
+        println!("{:#?}", rewards.values().fold(0, |acc, x| acc + x));
+        assert_eq!(rewards.values().fold(0, |acc, x| acc + x), 75804696);
+    }
+
+    #[test]
     fn test_proving_rewards_cannot_exceed_coinbase_reward() {
         let rng = &mut TestRng::default();
 
